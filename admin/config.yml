@@ -1,0 +1,68 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "public/imagens"
+public_folder: "/imagens"
+
+locale: 'pt'
+
+collections:
+  - name: "configuracoes"
+    label: "⚙️ Configurações Gerais"
+    files:
+      - name: "geral"
+        label: "Textos e Informações da Empresa"
+        file: "public/dados.json"
+        format: json
+        fields:
+          - label: "🏠 Hero – Seção principal"
+            name: hero
+            widget: object
+            fields:
+              - { label: "Slogan principal", name: slogan, widget: string, hint: "Texto grande em destaque no topo" }
+              - { label: "Descrição da empresa", name: descricao, widget: text }
+
+          - label: "ℹ️ Sobre a Empresa"
+            name: sobre
+            widget: object
+            fields:
+              - { label: "Título", name: titulo, widget: string }
+              - { label: "Texto descritivo", name: texto, widget: text }
+              - { label: "Anos no mercado", name: anos, widget: string }
+
+          - label: "📍 Loja 1 – Afogados (Recife)"
+            name: loja1
+            widget: object
+            fields:
+              - { label: "Nome da unidade", name: nome, widget: string }
+              - { label: "Bairro", name: bairro, widget: string }
+              - { label: "Cidade", name: cidade, widget: string }
+              - { label: "Endereço completo", name: endereco, widget: string }
+              - { label: "Horário de funcionamento", name: horario, widget: string }
+              - { label: "Número WhatsApp (com DDI e DDD, sem + ou espaços)", name: whatsapp, widget: string, hint: "Ex: 5581991234567" }
+              - { label: "Mensagem padrão WhatsApp", name: mensagem, widget: string }
+
+          - label: "📍 Loja 2 – Peixinhos (Olinda)"
+            name: loja2
+            widget: object
+            fields:
+              - { label: "Nome da unidade", name: nome, widget: string }
+              - { label: "Bairro", name: bairro, widget: string }
+              - { label: "Cidade", name: cidade, widget: string }
+              - { label: "Endereço completo", name: endereco, widget: string }
+              - { label: "Horário de funcionamento", name: horario, widget: string }
+              - { label: "Número WhatsApp (com DDI e DDD, sem + ou espaços)", name: whatsapp, widget: string, hint: "Ex: 5581991234567" }
+              - { label: "Mensagem padrão WhatsApp", name: mensagem, widget: string }
+
+          - label: "📍 Loja 3 – Muribeca (Jaboatão)"
+            name: loja3
+            widget: object
+            fields:
+              - { label: "Nome da unidade", name: nome, widget: string }
+              - { label: "Bairro", name: bairro, widget: string }
+              - { label: "Cidade", name: cidade, widget: string }
+              - { label: "Endereço completo", name: endereco, widget: string }
+              - { label: "Horário de funcionamento", name: horario, widget: string }
+              - { label: "Número WhatsApp (com DDI e DDD, sem + ou espaços)", name: whatsapp, widget: string, hint: "Ex: 5581991234567" }
+              - { label: "Mensagem padrão WhatsApp", name: mensagem, widget: string }

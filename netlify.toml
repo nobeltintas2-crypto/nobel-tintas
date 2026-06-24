@@ -1,0 +1,7 @@
+[build]
+  publish = "."
+
+[[redirects]]
+  from = "/dados.json"
+  to = "/public/dados.json"
+  status = 200

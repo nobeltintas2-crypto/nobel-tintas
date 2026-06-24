@@ -1,0 +1,38 @@
+{
+  "hero": {
+    "slogan": "Cor, qualidade e expertise para cada projeto",
+    "descricao": "A Nobel Tintas é distribuidora de tintas e revestimentos premium no Grande Recife, com soluções para os segmentos automotivo, náutico, madeira, decorativo, industrial e muito mais."
+  },
+  "sobre": {
+    "titulo": "Distribuidora de tintas premium no coração de Pernambuco",
+    "texto": "A Nobel Tintas nasceu com a missão de levar ao mercado pernambucano as melhores soluções em revestimentos, com atendimento especializado e portfólio completo. Presentes em três unidades estratégicas no Grande Recife, somos parceiros de profissionais, frotas, indústrias e clientes finais.",
+    "anos": "10+"
+  },
+  "loja1": {
+    "nome": "Afogados",
+    "bairro": "Afogados",
+    "cidade": "Recife — PE",
+    "endereco": "Afogados, Recife – Pernambuco",
+    "horario": "Seg – Sex: 07h30 às 17h30 | Sáb: 07h30 às 12h",
+    "whatsapp": "5581999999991",
+    "mensagem": "Olá, vim pelo site da Nobel Tintas — unidade Afogados!"
+  },
+  "loja2": {
+    "nome": "Peixinhos",
+    "bairro": "Peixinhos",
+    "cidade": "Olinda — PE",
+    "endereco": "Peixinhos, Olinda – Pernambuco",
+    "horario": "Seg – Sex: 07h30 às 17h30 | Sáb: 07h30 às 12h",
+    "whatsapp": "5581999999992",
+    "mensagem": "Olá, vim pelo site da Nobel Tintas — unidade Peixinhos!"
+  },
+  "loja3": {
+    "nome": "Muribeca",
+    "bairro": "Muribeca",
+    "cidade": "Jaboatão dos Guararapes — PE",
+    "endereco": "Muribeca, Jaboatão dos Guararapes – PE",
+    "horario": "Seg – Sex: 07h30 às 17h30 | Sáb: 07h30 às 12h",
+    "whatsapp": "5581999999993",
+    "mensagem": "Olá, vim pelo site da Nobel Tintas — unidade Muribeca!"
+  }
+}
