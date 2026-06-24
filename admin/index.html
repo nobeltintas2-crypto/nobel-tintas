@@ -1,11 +1,439 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Painel Nobel Tintas</title>
+  <title>Nobel Tintas – Especialistas em Revestimentos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --azul-nobel: #003087; --azul-medio: #0055b3; --azul-claro: #1a7fd4;
+      --amarelo: #f5c000; --amarelo-hover: #e0ac00; --branco: #ffffff;
+      --cinza-claro: #f4f6fa; --cinza-medio: #dde3ee; --cinza-texto: #5a6275;
+      --preto-suave: #1a1f2e;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; color: var(--preto-suave); background: var(--branco); overflow-x: hidden; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(0,55,128,0.96); backdrop-filter: blur(10px);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5vw; height: 68px; box-shadow: 0 2px 20px rgba(0,0,0,0.25);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .nav-logo-icon {
+      width: 44px; height: 44px; background: var(--amarelo); border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 20px;
+      color: var(--azul-nobel); letter-spacing: -1px;
+    }
+    .nav-logo-text { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 18px; color: var(--branco); line-height: 1.1; }
+    .nav-logo-text span { display: block; font-size: 10px; font-weight: 400; color: var(--amarelo); letter-spacing: 2px; text-transform: uppercase; }
+    .nav-links { display: flex; gap: 32px; align-items: center; }
+    .nav-links a { color: rgba(255,255,255,0.82); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--amarelo); }
+    .nav-cta { background: var(--amarelo) !important; color: var(--azul-nobel) !important; padding: 9px 22px; border-radius: 6px; font-weight: 700 !important; }
+    .nav-cta:hover { background: var(--amarelo-hover) !important; }
+
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--azul-nobel) 0%, var(--azul-medio) 55%, var(--azul-claro) 100%);
+      display: flex; align-items: center; padding: 100px 5vw 60px; position: relative; overflow: hidden;
+    }
+    .hero::before { content: ''; position: absolute; right: -80px; top: -60px; width: 520px; height: 520px; background: var(--amarelo); opacity: 0.12; border-radius: 50%; }
+    .hero::after { content: ''; position: absolute; right: 60px; bottom: -100px; width: 320px; height: 320px; background: var(--amarelo); opacity: 0.07; border-radius: 50%; }
+    .hero-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .hero-eyebrow { display: inline-block; background: rgba(245,192,0,0.18); border: 1px solid var(--amarelo); color: var(--amarelo); font-size: 11px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; padding: 5px 14px; border-radius: 4px; margin-bottom: 24px; }
+    .hero h1 { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: clamp(32px,4.5vw,58px); line-height: 1.1; color: var(--branco); margin-bottom: 22px; }
+    .hero h1 em { font-style: normal; color: var(--amarelo); }
+    .hero-sub { color: rgba(255,255,255,0.78); font-size: 17px; line-height: 1.7; margin-bottom: 40px; max-width: 480px; }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn-primary { background: var(--amarelo); color: var(--azul-nobel); padding: 15px 32px; border-radius: 8px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 15px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: background 0.2s, transform 0.15s; box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
+    .btn-primary:hover { background: var(--amarelo-hover); transform: translateY(-2px); }
+    .btn-outline { background: transparent; color: var(--branco); border: 2px solid rgba(255,255,255,0.4); padding: 13px 30px; border-radius: 8px; font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 15px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: border-color 0.2s, background 0.2s; }
+    .btn-outline:hover { border-color: var(--amarelo); background: rgba(245,192,0,0.08); }
+    .hero-visual { display: flex; justify-content: center; align-items: center; }
+    .hero-paint-card { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 20px; padding: 32px; backdrop-filter: blur(8px); width: 100%; max-width: 380px; }
+    .paint-swatches { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; margin-bottom: 20px; }
+    .swatch { height: 52px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.18); }
+    .hero-card-label { color: rgba(255,255,255,0.6); font-size: 12px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; }
+    .hero-card-title { color: var(--branco); font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 20px; margin-bottom: 6px; }
+    .hero-card-sub { color: rgba(255,255,255,0.55); font-size: 13px; line-height: 1.5; }
+
+    .stats-bar { background: var(--amarelo); padding: 22px 5vw; }
+    .stats-inner { max-width: 1200px; margin: 0 auto; display: flex; gap: 0; justify-content: space-around; flex-wrap: wrap; }
+    .stat-item { display: flex; flex-direction: column; align-items: center; padding: 8px 24px; border-right: 1px solid rgba(0,55,128,0.2); }
+    .stat-item:last-child { border-right: none; }
+    .stat-num { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 32px; color: var(--azul-nobel); line-height: 1; }
+    .stat-label { font-size: 12px; font-weight: 500; color: var(--azul-medio); letter-spacing: 0.5px; margin-top: 4px; }
+
+    section { padding: 88px 5vw; }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+    .section-eyebrow { display: inline-block; background: rgba(0,55,128,0.08); color: var(--azul-medio); font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; padding: 5px 14px; border-radius: 4px; margin-bottom: 16px; }
+    .section-title { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: clamp(26px,3vw,40px); line-height: 1.2; color: var(--preto-suave); margin-bottom: 16px; }
+    .section-title span { color: var(--azul-nobel); }
+    .section-desc { color: var(--cinza-texto); font-size: 16px; line-height: 1.75; max-width: 560px; }
+
+    .sobre { background: var(--branco); }
+    .sobre-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+    .sobre-img-box { background: linear-gradient(135deg,var(--azul-nobel),var(--azul-claro)); border-radius: 20px; min-height: 380px; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; }
+    .sobre-img-box svg { opacity: 0.22; }
+    .sobre-badge { position: absolute; bottom: -20px; right: -20px; background: var(--amarelo); border-radius: 16px; padding: 20px 24px; box-shadow: 0 8px 32px rgba(0,0,0,0.15); }
+    .sobre-badge-num { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 36px; color: var(--azul-nobel); line-height: 1; }
+    .sobre-badge-text { font-size: 12px; font-weight: 600; color: var(--azul-medio); line-height: 1.3; margin-top: 4px; }
+    .sobre-features { margin-top: 36px; display: flex; flex-direction: column; gap: 18px; }
+    .sobre-feature { display: flex; gap: 14px; align-items: flex-start; }
+    .feature-icon { width: 42px; height: 42px; flex-shrink: 0; background: rgba(0,55,128,0.08); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+    .feature-text h4 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 15px; color: var(--preto-suave); margin-bottom: 3px; }
+    .feature-text p { font-size: 13px; color: var(--cinza-texto); line-height: 1.5; }
+
+    .segmentos { background: var(--cinza-claro); }
+    .segmentos-header { margin-bottom: 48px; }
+    .segmentos-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(180px,1fr)); gap: 20px; }
+    .seg-card { background: var(--branco); border-radius: 16px; padding: 28px 20px; text-align: center; border: 1px solid var(--cinza-medio); transition: box-shadow 0.25s, transform 0.2s, border-color 0.2s; }
+    .seg-card:hover { box-shadow: 0 8px 30px rgba(0,55,128,0.12); transform: translateY(-4px); border-color: var(--azul-claro); }
+    .seg-icon { font-size: 36px; margin-bottom: 14px; display: block; line-height: 1; }
+    .seg-title { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 14px; color: var(--preto-suave); margin-bottom: 6px; }
+    .seg-desc { font-size: 12px; color: var(--cinza-texto); line-height: 1.5; }
+
+    .lojas { background: var(--branco); }
+    .lojas-header { margin-bottom: 48px; }
+    .lojas-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(300px,1fr)); gap: 24px; }
+    .loja-card { border: 1.5px solid var(--cinza-medio); border-radius: 20px; overflow: hidden; transition: box-shadow 0.25s, border-color 0.2s; }
+    .loja-card:hover { box-shadow: 0 10px 40px rgba(0,55,128,0.1); border-color: var(--azul-claro); }
+    .loja-header { background: linear-gradient(135deg,var(--azul-nobel),var(--azul-medio)); padding: 22px 24px; display: flex; align-items: center; gap: 14px; }
+    .loja-num { width: 40px; height: 40px; flex-shrink: 0; background: var(--amarelo); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 16px; color: var(--azul-nobel); }
+    .loja-nome { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 17px; color: var(--branco); }
+    .loja-cidade { font-size: 12px; color: rgba(255,255,255,0.65); margin-top: 2px; }
+    .loja-body { padding: 24px; }
+    .loja-info-row { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 12px; font-size: 14px; color: var(--cinza-texto); line-height: 1.5; }
+    .loja-info-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+    .btn-wpp { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; margin-top: 20px; background: #25d366; color: var(--branco); border-radius: 10px; padding: 13px; text-decoration: none; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 14px; transition: background 0.2s, transform 0.15s; }
+    .btn-wpp:hover { background: #1ebe59; transform: translateY(-2px); }
+    .btn-wpp svg { width: 20px; height: 20px; fill: var(--branco); }
+
+    .parceiros { background: var(--azul-nobel); padding: 48px 5vw; text-align: center; }
+    .parceiros p { color: rgba(255,255,255,0.55); font-size: 12px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 24px; }
+    .parceiros-logos { display: flex; justify-content: center; gap: 48px; flex-wrap: wrap; align-items: center; }
+    .parceiro-badge { background: var(--branco); border-radius: 16px; padding: 24px 40px; display: flex; flex-direction: column; align-items: center; gap: 8px; box-shadow: 0 4px 24px rgba(0,0,0,0.18); min-width: 200px; transition: transform 0.2s; }
+    .parceiro-badge:hover { transform: translateY(-4px); }
+    .parceiro-nome { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 22px; letter-spacing: 0.5px; }
+    .parceiro-sub { font-size: 11px; font-weight: 500; color: #888; letter-spacing: 1.5px; text-transform: uppercase; }
+
+    footer { background: var(--preto-suave); padding: 48px 5vw 28px; }
+    .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; gap: 48px; flex-wrap: wrap; justify-content: space-between; margin-bottom: 32px; }
+    .footer-brand p { color: rgba(255,255,255,0.45); font-size: 13px; line-height: 1.7; margin-top: 14px; max-width: 260px; }
+    .footer-col h5 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 13px; color: var(--amarelo); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 16px; }
+    .footer-col a { display: block; color: rgba(255,255,255,0.5); text-decoration: none; font-size: 13px; margin-bottom: 9px; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--amarelo); }
+    .footer-bottom { max-width: 1200px; margin: 0 auto; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 22px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .footer-bottom p { color: rgba(255,255,255,0.3); font-size: 12px; }
+
+    /* Loader */
+    #loading { position: fixed; inset: 0; background: var(--azul-nobel); display: flex; align-items: center; justify-content: center; z-index: 9999; transition: opacity 0.4s; }
+    #loading.hidden { opacity: 0; pointer-events: none; }
+    .loader-logo { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 28px; color: var(--amarelo); }
+
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.55s ease, transform 0.55s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    @media (max-width: 860px) {
+      .nav-links { display: none; }
+      .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+      .hero-visual { display: none; }
+      .sobre-grid { grid-template-columns: 1fr; }
+      .sobre-visual { display: none; }
+    }
+    @media (max-width: 480px) {
+      section { padding: 60px 5vw; }
+      .lojas-grid { grid-template-columns: 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+  </style>
 </head>
 <body>
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+
+<div id="loading"><div class="loader-logo">NT</div></div>
+
+<nav>
+  <a class="nav-logo" href="#">
+    <div class="nav-logo-icon">NT</div>
+    <div class="nav-logo-text">Nobel Tintas<span>Loja de Tintas</span></div>
+  </a>
+  <div class="nav-links">
+    <a href="#sobre">Sobre</a>
+    <a href="#segmentos">Segmentos</a>
+    <a href="#lojas">Nossas Lojas</a>
+    <a href="#lojas" class="nav-cta">Fale Conosco</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-inner">
+    <div class="hero-content reveal">
+      <div class="hero-eyebrow">Especialistas em revestimentos</div>
+      <h1 id="hero-slogan">Cor, qualidade e <em>expertise</em> para cada projeto</h1>
+      <p class="hero-sub" id="hero-descricao">Carregando...</p>
+      <div class="hero-actions">
+        <a href="#lojas" class="btn-primary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Encontre uma loja
+        </a>
+        <a href="#segmentos" class="btn-outline">Ver segmentos</a>
+      </div>
+    </div>
+    <div class="hero-visual reveal" style="transition-delay:0.15s">
+      <div class="hero-paint-card">
+        <div class="paint-swatches">
+          <div class="swatch" style="background:#1a3a6b"></div>
+          <div class="swatch" style="background:#e63426"></div>
+          <div class="swatch" style="background:#f5c000"></div>
+          <div class="swatch" style="background:#2ecc71"></div>
+          <div class="swatch" style="background:#ffffff;border:1px solid rgba(255,255,255,0.15)"></div>
+          <div class="swatch" style="background:#888fa0"></div>
+          <div class="swatch" style="background:#0055b3"></div>
+          <div class="swatch" style="background:#1a1f2e"></div>
+        </div>
+        <div class="hero-card-label">Parceiro oficial</div>
+        <div class="hero-card-title">Skylack Tintas</div>
+        <div class="hero-card-sub">Linha completa de esmaltes, fundos, vernizes e automotivos de alto desempenho.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item reveal"><div class="stat-num">3</div><div class="stat-label">Unidades no Grande Recife</div></div>
+    <div class="stat-item reveal" style="transition-delay:0.1s"><div class="stat-num">7+</div><div class="stat-label">Segmentos atendidos</div></div>
+    <div class="stat-item reveal" style="transition-delay:0.2s"><div class="stat-num">1.700+</div><div class="stat-label">Produtos em catálogo</div></div>
+    <div class="stat-item reveal" style="transition-delay:0.3s"><div class="stat-num">PE</div><div class="stat-label">Pernambuco — Nordeste</div></div>
+  </div>
+</div>
+
+<!-- SOBRE -->
+<section class="sobre" id="sobre">
+  <div class="section-inner sobre-grid">
+    <div class="sobre-visual reveal">
+      <div class="sobre-img-box" style="position:relative">
+        <svg width="260" height="260" viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg">
+          <rect x="30" y="80" width="50" height="130" rx="6" fill="white"/>
+          <rect x="90" y="50" width="50" height="160" rx="6" fill="white"/>
+          <rect x="150" y="100" width="50" height="110" rx="6" fill="white"/>
+          <circle cx="55" cy="60" r="20" fill="#f5c000"/>
+          <circle cx="115" cy="30" r="14" fill="#f5c000" opacity="0.7"/>
+          <circle cx="175" cy="80" r="16" fill="#f5c000" opacity="0.5"/>
+        </svg>
+        <div class="sobre-badge">
+          <div class="sobre-badge-num" id="sobre-anos">10+</div>
+          <div class="sobre-badge-text">anos no<br>mercado</div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal" style="transition-delay:0.12s">
+      <div class="section-eyebrow">Quem somos</div>
+      <h2 class="section-title" id="sobre-titulo">Distribuidora de tintas premium no <span>coração de Pernambuco</span></h2>
+      <p class="section-desc" id="sobre-texto">Carregando...</p>
+      <div class="sobre-features">
+        <div class="sobre-feature"><div class="feature-icon">🏆</div><div class="feature-text"><h4>Parceria Skylack Tintas</h4><p>Revendedor autorizado com acesso a toda linha de produtos Skylack para profissionais e empresas.</p></div></div>
+        <div class="sobre-feature"><div class="feature-icon">📍</div><div class="feature-text"><h4>Três unidades estratégicas</h4><p>Afogados (Recife), Peixinhos (Olinda) e Muribeca (Jaboatão dos Guararapes) — próximas de você.</p></div></div>
+        <div class="sobre-feature"><div class="feature-icon">🎓</div><div class="feature-text"><h4>Equipe especializada</h4><p>Orientação técnica para você escolher o produto certo para cada superfície e aplicação.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SEGMENTOS -->
+<section class="segmentos" id="segmentos">
+  <div class="section-inner">
+    <div class="segmentos-header reveal">
+      <div class="section-eyebrow">O que atendemos</div>
+      <h2 class="section-title">Soluções para <span>cada segmento</span></h2>
+      <p class="section-desc">Do carro ao navio, da madeira à linha industrial — temos o produto certo para cada necessidade.</p>
+    </div>
+    <div class="segmentos-grid">
+      <div class="seg-card reveal"><span class="seg-icon">🚗</span><div class="seg-title">Automotivo</div><div class="seg-desc">Tintas, vernizes e fundos para funilaria e acabamento veicular profissional.</div></div>
+      <div class="seg-card reveal" style="transition-delay:0.07s"><span class="seg-icon">⚓</span><div class="seg-title">Náutico</div><div class="seg-desc">Revestimentos de alta resistência para embarcações e ambientes marinhos.</div></div>
+      <div class="seg-card reveal" style="transition-delay:0.14s"><span class="seg-icon">🪵</span><div class="seg-title">Madeira</div><div class="seg-desc">Stains, vernizes e esmaltes para móveis, pisos e estruturas de madeira.</div></div>
+      <div class="seg-card reveal" style="transition-delay:0.21s"><span class="seg-icon">🎨</span><div class="seg-title">Decorativo</div><div class="seg-desc">Tintas imobiliárias e texturas para ambientes residenciais e comerciais.</div></div>
+      <div class="seg-card reveal" style="transition-delay:0.28s"><span class="seg-icon">⚙️</span><div class="seg-title">Industrial</div><div class="seg-desc">Revestimentos anticorrosivos e de alta performance para plantas industriais.</div></div>
+      <div class="seg-card reveal" style="transition-delay:0.35s"><span class="seg-icon">🚌</span><div class="seg-title">Frotas de Ônibus</div><div class="seg-desc">Soluções para pintura e manutenção de grandes frotas de transporte coletivo.</div></div>
+      <div class="seg-card reveal" style="transition-delay:0.42s"><span class="seg-icon">🏭</span><div class="seg-title">Alto Desempenho</div><div class="seg-desc">Tintas epóxi, poliuretano e sistemas especiais para aplicações críticas.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- LOJAS (geradas via JS) -->
+<section class="lojas" id="lojas">
+  <div class="section-inner">
+    <div class="lojas-header reveal">
+      <div class="section-eyebrow">Nossas unidades</div>
+      <h2 class="section-title">Três lojas para <span>atender você</span></h2>
+      <p class="section-desc">Clique no botão do WhatsApp da unidade mais próxima e fale diretamente com nossa equipe.</p>
+    </div>
+    <div class="lojas-grid" id="lojas-grid">
+      <!-- preenchido pelo JS -->
+    </div>
+  </div>
+</section>
+
+<div class="parceiros reveal">
+  <p>Nossos parceiros</p>
+  <div class="parceiros-logos">
+
+    <!-- SKYLACK -->
+    <div class="parceiro-badge" style="background:#003087; padding:18px 32px;">
+      <svg width="180" height="60" viewBox="0 0 260 80" xmlns="http://www.w3.org/2000/svg">
+        <!-- Ícone chevrons -->
+        <g transform="translate(8,10)">
+          <path d="M0 30 L18 10 L28 10 L10 30 L28 50 L18 50 Z" fill="#e8a020"/>
+          <path d="M14 30 L32 10 L42 10 L24 30 L42 50 L32 50 Z" fill="#e8a020"/>
+          <path d="M14 30 L32 10 L42 10 L24 30 L42 50 L32 50 Z" fill="none" stroke="#cc2200" stroke-width="1"/>
+          <!-- S circular -->
+          <circle cx="21" cy="30" r="22" fill="none" stroke="#e8a020" stroke-width="3"/>
+        </g>
+        <!-- Texto Skylack -->
+        <text x="60" y="42" font-family="Arial Black, sans-serif" font-weight="900" font-size="32" fill="#e8a020" letter-spacing="-1">Skylack</text>
+        <!-- Registered -->
+        <text x="238" y="22" font-family="Arial" font-size="12" fill="#e8a020">®</text>
+        <!-- Subtítulo -->
+        <text x="60" y="60" font-family="Arial, sans-serif" font-size="10" fill="rgba(255,255,255,0.75)" letter-spacing="0.5">Especializada em Repintura Automotiva</text>
+      </svg>
+    </div>
+
+    <!-- DEERFOS -->
+    <div class="parceiro-badge" style="background:#ffffff; padding:18px 32px;">
+      <svg width="180" height="60" viewBox="0 0 260 70" xmlns="http://www.w3.org/2000/svg">
+        <!-- Círculo com veado -->
+        <circle cx="30" cy="35" r="28" fill="none" stroke="#2a7a2a" stroke-width="3"/>
+        <!-- Veado simplificado -->
+        <g transform="translate(16,12)" fill="#2a7a2a">
+          <ellipse cx="14" cy="32" rx="8" ry="10" />
+          <ellipse cx="14" cy="18" rx="6" ry="7" />
+          <!-- chifres -->
+          <path d="M10 13 L6 4 M10 13 L8 3 M18 13 L22 4 M18 13 L20 3" stroke="#2a7a2a" stroke-width="2" fill="none"/>
+          <!-- patas -->
+          <path d="M8 42 L6 50 M20 42 L22 50" stroke="#2a7a2a" stroke-width="2.5" fill="none"/>
+        </g>
+        <!-- DEER em preto -->
+        <text x="66" y="44" font-family="Arial Black, sans-serif" font-weight="900" font-size="36" fill="#1a1a1a" letter-spacing="-1">DEER</text>
+        <!-- FOS em verde -->
+        <text x="162" y="44" font-family="Arial Black, sans-serif" font-weight="900" font-size="36" fill="#2a7a2a" letter-spacing="-1">FOS</text>
+      </svg>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a class="nav-logo" href="#">
+        <div class="nav-logo-icon">NT</div>
+        <div class="nav-logo-text">Nobel Tintas<span>Loja de Tintas</span></div>
+      </a>
+      <p>Loja especializada em tintas e revestimentos premium no Grande Recife, Pernambuco.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Navegação</h5>
+      <a href="#sobre">Sobre a empresa</a>
+      <a href="#segmentos">Segmentos</a>
+      <a href="#lojas">Nossas lojas</a>
+    </div>
+    <div class="footer-col">
+      <h5>Unidades</h5>
+      <a href="#lojas">Afogados – Recife</a>
+      <a href="#lojas">Peixinhos – Olinda</a>
+      <a href="#lojas">Muribeca – Jaboatão</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Nobel Tintas. Todos os direitos reservados.</p>
+    <p>Recife, Pernambuco – Brasil</p>
+  </div>
+</footer>
+
+<script>
+const wppSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>`;
+
+function renderLoja(loja, num) {
+  const msg = encodeURIComponent(loja.mensagem);
+  const [linha1, linha2] = loja.horario.split('|');
+  return `
+    <div class="loja-card reveal" style="transition-delay:${(num-1)*0.12}s">
+      <div class="loja-header">
+        <div class="loja-num">${num}</div>
+        <div>
+          <div class="loja-nome">${loja.nome}</div>
+          <div class="loja-cidade">${loja.cidade}</div>
+        </div>
+      </div>
+      <div class="loja-body">
+        <div class="loja-info-row"><span class="loja-info-icon">📍</span><span>${loja.endereco}</span></div>
+        <div class="loja-info-row"><span class="loja-info-icon">🕐</span><span>${linha1.trim()}${linha2 ? '<br>' + linha2.trim() : ''}</span></div>
+        <a class="btn-wpp" href="https://wa.me/${loja.whatsapp}?text=${msg}" target="_blank" rel="noopener">
+          ${wppSvg} Chamar no WhatsApp
+        </a>
+      </div>
+    </div>`;
+}
+
+async function init() {
+  try {
+    const res = await fetch('/dados.json');
+    const d = await res.json();
+
+    // Hero
+    document.getElementById('hero-descricao').textContent = d.hero.descricao;
+
+    // Sobre
+    document.getElementById('sobre-anos').textContent = d.sobre.anos;
+    document.getElementById('sobre-titulo').innerHTML = d.sobre.titulo;
+    document.getElementById('sobre-texto').textContent = d.sobre.texto;
+
+    // Lojas
+    const grid = document.getElementById('lojas-grid');
+    grid.innerHTML = renderLoja(d.loja1, 1) + renderLoja(d.loja2, 2) + renderLoja(d.loja3, 3);
+
+  } catch(e) {
+    console.warn('dados.json não encontrado, usando fallback.');
+  }
+
+  // Remove loader
+  const loader = document.getElementById('loading');
+  loader.classList.add('hidden');
+  setTimeout(() => loader.remove(), 500);
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => obs.observe(el));
+  setTimeout(() => {
+    reveals.forEach(el => { if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add('visible'); });
+  }, 120);
+}
+
+init();
+</script>
+
 </body>
 </html>
+
+<script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", user => {
+      if (!user) {
+        window.netlifyIdentity.on("login", () => {
+          document.location.href = "/admin/";
+        });
+      }
+    });
+  }
+</script>
